@@ -1,0 +1,9 @@
+.gallery__image {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: auto;
+  max-width: 75vw;
+  height: auto;
+  max-height: 75vh;
+}

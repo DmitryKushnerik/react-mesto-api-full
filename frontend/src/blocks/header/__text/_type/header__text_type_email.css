@@ -1,0 +1,10 @@
+.header__text_type_email {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 639px) {
+  .header__text_type_email {
+    font-size: 18px;
+    line-height: 1.22;
+  }
+}

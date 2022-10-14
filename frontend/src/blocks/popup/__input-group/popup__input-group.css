@@ -1,0 +1,7 @@
+.popup__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 1;
+  min-height: 48px;
+}

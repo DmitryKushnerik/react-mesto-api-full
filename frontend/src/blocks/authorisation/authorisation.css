@@ -1,0 +1,13 @@
+.authorisation {
+  height: calc(100vh - 119px);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+@media screen and (max-width: 639px) {
+  .authorisation {
+    height: calc(100vh - 84px);
+  }
+}

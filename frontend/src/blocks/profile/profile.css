@@ -1,0 +1,25 @@
+.profile {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 150px 1fr 150px;
+  align-items: center;
+}
+
+@media screen and (max-width: 879px) {
+  .profile {
+    padding: 0 19px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .profile {
+    padding: 0;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

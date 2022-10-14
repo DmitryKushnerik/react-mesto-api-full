@@ -1,0 +1,5 @@
+.profile__caption {
+  display: inline-block;
+  max-width: calc(100% - 42px);
+  position: relative;
+}

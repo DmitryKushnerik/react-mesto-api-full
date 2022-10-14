@@ -1,0 +1,21 @@
+.infotooltip__text {
+  display: block;
+  width: 358px;
+  min-height: 58px;
+  margin: 0;
+  padding: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.21;
+  text-align: center;
+  color: #000000;
+}
+
+@media screen and (max-width: 639px) {
+  .infotooltip__text {
+    width: 244px;
+    min-height: 48px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}

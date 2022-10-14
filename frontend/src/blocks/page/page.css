@@ -1,0 +1,17 @@
+.page {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-style: normal;
+}
+
+@media screen and (max-width: 320px) {
+  .page {
+    justify-content: start;
+  }
+}
