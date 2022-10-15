@@ -2,17 +2,20 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
 const AuthorisationError = require('../errors/AuthorisationError');
 const NotFoundError = require('../errors/NotFoundError');
 const ValidationError = require('../errors/ValidationError');
 const UserExistsError = require('../errors/UserExistsError');
 
+// Получить всех пользователей
 module.exports.getAllUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send({ data: users }))
     .catch(next);
 };
 
+// Получить информацию о конкретном пользователе
 function getInfoAboutUser(req, res, next, userID) {
   User.findById(userID)
     .then((user) => {
@@ -29,14 +32,17 @@ function getInfoAboutUser(req, res, next, userID) {
     });
 }
 
+// Получить информацию о пользователе по ID
 module.exports.getUserById = (req, res, next) => {
   getInfoAboutUser(req, res, next, req.params.userId);
 };
 
+// Получить информацию об залогиненном пользователе
 module.exports.getInfoAboutMe = (req, res, next) => {
   getInfoAboutUser(req, res, next, req.user._id);
 };
 
+// Создать нового пользователя
 module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -61,6 +67,7 @@ module.exports.createUser = (req, res, next) => {
     });
 };
 
+// Обновить информацию о пользователе
 module.exports.updateUserInfo = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(
@@ -82,6 +89,7 @@ module.exports.updateUserInfo = (req, res, next) => {
     });
 };
 
+// Обновить аватар пользователя
 module.exports.updateUserAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(
@@ -103,13 +111,14 @@ module.exports.updateUserAvatar = (req, res, next) => {
     });
 };
 
+// Вход в систему
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        'some-secret-key',
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
       res.send({ user, token });

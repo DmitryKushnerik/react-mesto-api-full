@@ -3,12 +3,14 @@ const ValidationError = require('../errors/ValidationError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const Card = require('../models/card');
 
+// Получить все карточки
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
     .then((cards) => res.send({ data: cards }))
     .catch(next);
 };
 
+// Создать новую карточку
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
@@ -21,6 +23,7 @@ module.exports.createCard = (req, res, next) => {
     });
 };
 
+// Удалить карточку
 module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .then((card) => {
@@ -42,6 +45,7 @@ module.exports.deleteCard = (req, res, next) => {
     });
 };
 
+// Лайк
 module.exports.likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
@@ -62,6 +66,7 @@ module.exports.likeCard = (req, res, next) => {
     });
 };
 
+// Дизлайк
 module.exports.dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
