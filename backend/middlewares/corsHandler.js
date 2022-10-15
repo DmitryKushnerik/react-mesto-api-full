@@ -2,6 +2,7 @@ const corsOriginHandler = (req, res, next) => {
   // Массив доменов, с которых разрешены кросс-доменные запросы
   const allowedCors = [
     'https://kushnerik.students.nomoredomains.icu',
+    'http://kushnerik.students.nomoredomains.icu',
     'localhost:3000',
   ];
 
