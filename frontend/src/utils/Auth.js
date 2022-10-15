@@ -53,7 +53,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: 'https://auth.nomoreparties.co'
+  baseUrl: 'https://api.kushnerik.students.nomoredomains.icu'
 });
 
 export default auth;
