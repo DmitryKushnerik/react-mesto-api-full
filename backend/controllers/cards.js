@@ -6,7 +6,7 @@ const Card = require('../models/card');
 // Получить все карточки
 module.exports.getAllCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send({ cards }))
     .catch(next);
 };
 
