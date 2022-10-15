@@ -11,7 +11,15 @@ class Api {
     return res.json();
   }
 
+  setToken() {
+    const token = localStorage.getItem('token');
+    if (!this._headers["Authorization"]) {
+      this._headers["Authorization"] = `Bearer ${token}`;
+    }
+  }
+
   getUserInfo() {
+    this.setToken();
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
@@ -19,6 +27,7 @@ class Api {
   }
 
   setUserInfo({ name, about }) {
+    this.setToken();
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -31,6 +40,7 @@ class Api {
   }
 
   getInitialCards() {
+    this.setToken();
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
@@ -38,6 +48,7 @@ class Api {
   }
 
   addNewCard(item) {
+    this.setToken();
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -47,6 +58,7 @@ class Api {
   }
 
   deleteCard(cardId) {
+    this.setToken();
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
@@ -55,6 +67,7 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, newLike) {
+    this.setToken();
     const method = newLike ? "PUT" : "DELETE";
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: method,
@@ -64,6 +77,7 @@ class Api {
   }
 
   setUserAvatar(avatar) {
+    this.setToken();
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
