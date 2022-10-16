@@ -11,7 +11,7 @@ const UserExistsError = require('../errors/UserExistsError');
 // Получить всех пользователей
 module.exports.getAllUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({  users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -22,7 +22,7 @@ function getInfoAboutUser(req, res, next, userID) {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({  user });
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -55,7 +55,7 @@ module.exports.createUser = (req, res, next) => {
       const result = {
         name: user.name, about: user.about, avatar: user.avatar, _id: user._id, email: user.email,
       };
-      return res.send({  result });
+      return res.send(result);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -79,7 +79,7 @@ module.exports.updateUserInfo = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({  user });
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -101,7 +101,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({  user });
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -121,7 +121,7 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-      res.send({ user, token });
+      res.send(user, token);
     })
     .catch(() => next(new AuthorisationError('Произошла ошибка авторизации')));
 };
