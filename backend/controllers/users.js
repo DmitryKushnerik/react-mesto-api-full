@@ -22,7 +22,7 @@ function getInfoAboutUser(req, res, next, userID) {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({ data: user });
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
