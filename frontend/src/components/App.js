@@ -220,7 +220,7 @@ function App() {
         .then(([userInfo, initialCards]) => {
           console.log(initialCards);
           console.log(userInfo);
-          setCurrentUser(userInfo);
+          setCurrentUser(userInfo.data);
           setCards(initialCards);
         })
         .catch((err) => console.log(`Не удалось выполнить запрос. ${err}`));
