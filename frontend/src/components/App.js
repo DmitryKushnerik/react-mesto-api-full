@@ -183,7 +183,6 @@ function App() {
 
   //Вход в систему
   function handleLogin(email, password, object) {
-    console.log(email + '/' + password)
     auth.authorize(email, password)
       .then((data) => {
         if (data.token) {
@@ -218,8 +217,6 @@ function App() {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userInfo, initialCards]) => {
-          console.log(initialCards);
-          console.log(userInfo);
           setCurrentUser(userInfo.data);
           setCards(initialCards);
         })
