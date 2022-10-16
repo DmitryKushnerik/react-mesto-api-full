@@ -11,7 +11,7 @@ const UserExistsError = require('../errors/UserExistsError');
 // Получить всех пользователей
 module.exports.getAllUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send({  users }))
     .catch(next);
 };
 
@@ -22,7 +22,7 @@ function getInfoAboutUser(req, res, next, userID) {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({ data: user });
+      return res.send({  user });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -55,7 +55,7 @@ module.exports.createUser = (req, res, next) => {
       const result = {
         name: user.name, about: user.about, avatar: user.avatar, _id: user._id, email: user.email,
       };
-      return res.send({ data: result });
+      return res.send({  result });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -79,7 +79,7 @@ module.exports.updateUserInfo = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({ data: user });
+      return res.send({  user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -101,7 +101,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
       if (!user) {
         return next(new NotFoundError('Пользователь по указанному _id не найден'));
       }
-      return res.send({ data: user });
+      return res.send({  user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
