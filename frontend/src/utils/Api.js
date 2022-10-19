@@ -13,9 +13,7 @@ class Api {
 
   setToken() {
     const token = localStorage.getItem('token');
-    if (!this._headers["Authorization"]) {
-      this._headers["Authorization"] = `Bearer ${token}`;
-    }
+    this._headers["Authorization"] = `Bearer ${token}`;
   }
 
   getUserInfo() {
